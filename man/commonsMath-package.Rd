@@ -9,7 +9,6 @@
 \packageDescription{commonsMath}
 }
 \details{
-
 The DESCRIPTION file:
 \packageDESCRIPTION{commonsMath}
 
@@ -20,7 +19,7 @@ See the examples below to see how to access the Apache Commons Math Library usin
 # This makes it so the example code below runs as a user would user it.
 # R's package checking loads the commonsMath package before rJava, so
 # it commonsMath does ever load its JAR file.
-detach("package:commonsMath",unload=TRUE,force=TRUE)
+detach("package:commonsMath",unload=TRUE)
 }
 \dontrun{
 ################################################
@@ -66,6 +65,10 @@ rstdnorm <- function() {
   rng2 <- .jnew("org.apache.commons.math3.random.RandomDataGenerator")
   rng2$nextGaussian(0.0,1.0)
 }
+}
+\dontshow{
+# Undo the previous dontshow code.
+library("commonsMath")
 }
 }
 
