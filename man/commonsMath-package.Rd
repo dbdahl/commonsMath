@@ -18,7 +18,7 @@ See the examples below to see how to access the Apache Commons Math Library usin
 \dontshow{
 # This makes it so the example code below runs as a user would user it.
 # R's package checking loads the commonsMath package before rJava, so
-# it commonsMath does ever load its JAR file.
+# commonsMath does not ever load its JAR file.
 detach("package:commonsMath",unload=TRUE)
 }
 \dontrun{
