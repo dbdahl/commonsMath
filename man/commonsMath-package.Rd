@@ -28,7 +28,7 @@ detach("package:commonsMath",unload=TRUE)
 
 # Using the rscala package.
 library("rscala")
-s <- scala(classpath.packages="commonsMath")
+scala(classpath.packages="commonsMath")   # s is implicitly defined.
 rng1 <- s$.org.apache.commons.math3.random.RandomDataGenerator$new()
 rng1$nextGaussian(0.0,1.0)
 
