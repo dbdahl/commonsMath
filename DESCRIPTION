@@ -7,5 +7,5 @@ Description: Java JAR files for the Apache Commons Mathematics Library for use b
 Authors@R: c(person(given="David B.",family="Dahl",role=c("cre"),email="dahl@stat.byu.edu"), person(given="The Apache Software Foundation",role=c("aut","cph")))
 URL: https://github.com/dbdahl/commonsMath
 BugReports: https://github.com/dbdahl/commonsMath/issues
-Suggests: rscala (>= 2.5.0), rJava (>= 0.9-9)
+Suggests: rscala (>= 3.0.2), rJava (>= 0.9-10)
 License: Apache License 2.0 | file LICENSE

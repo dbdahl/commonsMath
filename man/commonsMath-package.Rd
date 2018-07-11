@@ -29,7 +29,7 @@ detach("package:commonsMath",unload=TRUE)
 # Using the rscala package.
 library("rscala")
 scala(classpath.packages="commonsMath")   # s is implicitly defined.
-rng1 <- s$.org.apache.commons.math3.random.RandomDataGenerator$new()
+rng1 <- s$.new_org.apache.commons.math3.random.RandomDataGenerator()
 rng1$nextGaussian(0.0,1.0)
 
 # Using the rJava package.
@@ -46,11 +46,11 @@ rng2$nextGaussian(0.0,1.0)
 #    The DESCRIPTION has 'Imports: rscala, commonsMath'
 #    The NAMESPACE has 'import(rscala)'.
 .onLoad <- function(libname, pkgname) {
-  .rscalaPackage(pkgname,classpath.packages="commonsMath")
+  scalaPackage("commonsMath")
 }
 
 rstdnorm <- function() {
-  rng1 <- s$.org.apache.commons.math3.random.RandomDataGenerator$new()
+  rng1 <- s$.new_org.apache.commons.math3.random.RandomDataGenerator()
   rng1$nextGaussian(0.0,1.0)
 }
 
