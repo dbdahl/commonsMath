@@ -1,5 +1,5 @@
 .onLoad <- function(libname, pkgname) {
-  if ( "rJava" %in% loadedNamespaces() ) {
+  if ( isNamespaceLoaded("rJava") ) {
     rJava::.jpackage(pkgname, lib.loc=libname)
   }
 }
