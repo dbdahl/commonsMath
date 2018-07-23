@@ -3,4 +3,3 @@
     rJava::.jpackage(pkgname, lib.loc=libname)
   }
 }
-
