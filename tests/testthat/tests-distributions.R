@@ -12,13 +12,184 @@ myExpect <- function(f,args=list(),identical=TRUE, tolerance=sqrt(.Machine$doubl
   else expect_equal(trans, native, tolerance=tolerance)
 }
 
-n <- 100
+# "sample"
+
+test_that("special functions",{
+
+  myExpect(function(x=scalaType("D0")) { gamma(x) }, list(3.72), FALSE)
+  myExpect(function(x=scalaType("D1")) { gamma(x) }, list(3.72), FALSE)
+  myExpect(function(x=scalaType("D1")) { gamma(x) }, list(c(3.72,5)), FALSE)
+  myExpect(function(x=scalaType("D1")) { gamma(x) }, list(c(3L,5L)), FALSE)
+  myExpect(function(x=scalaType("D0")) { lgamma(x) }, list(5.26), FALSE)
+  myExpect(function(x=scalaType("D1")) { lgamma(x) }, list(5.26), FALSE)
+  myExpect(function(x=scalaType("D1")) { lgamma(x) }, list(c(5.26,3)), FALSE)
+  myExpect(function(x=scalaType("D1")) { lgamma(x) }, list(c(5L,3L)), FALSE)
+  myExpect(function(x=scalaType("D0")) { factorial(x) }, list(3.72), FALSE)
+  myExpect(function(x=scalaType("D1")) { factorial(x) }, list(3.72), FALSE)
+  myExpect(function(x=scalaType("D1")) { factorial(x) }, list(c(3.72,4)), FALSE)
+  myExpect(function(x=scalaType("D1")) { factorial(x) }, list(c(3L,4L)), FALSE)
+  myExpect(function(x=scalaType("D0")) { lfactorial(x) }, list(5.26), FALSE)
+  myExpect(function(x=scalaType("D1")) { lfactorial(x) }, list(5.26), FALSE)
+  myExpect(function(x=scalaType("D1")) { lfactorial(x) }, list(c(5.26,3)), FALSE)
+  myExpect(function(x=scalaType("D1")) { lfactorial(x) }, list(c(5L,3L)), FALSE)
+  myExpect(function(x=scalaType("D0"),y=scalaType("D0")) { beta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I0"),y=scalaType("I0")) { beta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("D1"),y=scalaType("D1")) { beta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("I1")) { beta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("D1")) { beta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("D1")) { beta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("D0"),y=scalaType("D0")) { lbeta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I0"),y=scalaType("I0")) { lbeta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("D1"),y=scalaType("D1")) { lbeta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("I1")) { lbeta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("D1")) { lbeta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("D1")) { lbeta(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("D0"),y=scalaType("D0")) { choose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I0"),y=scalaType("I0")) { choose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("D1"),y=scalaType("D1")) { choose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("I1")) { choose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("D1")) { choose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("D1")) { choose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("D0"),y=scalaType("D0")) { lchoose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I0"),y=scalaType("I0")) { lchoose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("D1"),y=scalaType("D1")) { lchoose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("I1")) { lchoose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("D1")) { lchoose(x,y) }, list(5L,3L), FALSE)
+  myExpect(function(x=scalaType("I1"),y=scalaType("D1")) { lchoose(x,y) }, list(5L,3L), FALSE)
+
+})
+
+n  <- 100
+nStdDev <- 4
 
 test_that("normal distribution",{
 
   myExpect(function(x=scalaType("D1")) { dnorm(x,-3.0,2) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { dnorm(x,-3.0,2,log=TRUE) }, list(0.25), FALSE)
   myExpect(function(x=scalaType("D1")) { pnorm(x,0.2,5) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pnorm(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=scalaType("D1")) { qnorm(x,0.3,3) }, list(0.25), FALSE)
-  myExpect(function(n=scalaType("D0")) { mean(rnorm(n,1.0,2.0)) }, list(n), FALSE, tolerance=4*sqrt(2/n))
+  myExpect(function(x=scalaType("D1")) { qnorm(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rnorm(n,1.0,2.0)) }, list(n+0.7), FALSE, tolerance=nStdDev*2/sqrt(n))
+  
+})
+
+test_that("gamma distribution",{
+
+  myExpect(function(x=scalaType("D1")) { dgamma(x,3.0,2) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { dgamma(x,3.0,2,log=TRUE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pgamma(x,0.2,5) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pgamma(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qgamma(x,0.3,3) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qgamma(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rgamma(n,1.0,2.0)) }, list(n+0.2), FALSE, tolerance=nStdDev*sqrt((1/4)/n))
+  
+})
+
+test_that("exponential distribution",{
+
+  myExpect(function(x=scalaType("D1")) { dexp(x,3.0) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { dexp(x,3.0,log=TRUE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pexp(x,0.2) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pexp(x,0.2,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qexp(x,0.3) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qexp(x,0.3,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rexp(n,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt((1/4)/n))
+  
+})
+
+test_that("beta distribution",{
+
+  myExpect(function(x=scalaType("D1")) { dbeta(x,3.0,2) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { dbeta(x,3.0,2,log=TRUE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pbeta(x,0.2,5) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pbeta(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qbeta(x,0.3,3) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qbeta(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rbeta(n,3.0,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt((1/25)/n))
+  
+})
+
+test_that("t distribution",{
+
+  myExpect(function(x=scalaType("D1")) { dt(x,3) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { dt(x,3,0,log=TRUE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pt(x,4) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pt(x,4,0,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qt(x,2) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qt(x,2,0,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rt(n,3)) }, list(n), FALSE, tolerance=nStdDev*sqrt(3/n))
+  
+})
+
+test_that("chi squared distribution",{
+
+  myExpect(function(x=scalaType("D1")) { dchisq(x,3) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { dchisq(x,3,0,log=TRUE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pchisq(x,4) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pchisq(x,4,0,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qchisq(x,2) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qchisq(x,2,0,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rchisq(n,3)) }, list(n), FALSE, tolerance=nStdDev*sqrt(6/n))
+  
+})
+
+test_that("F distribution",{
+
+  myExpect(function(x=scalaType("D1")) { df(x,3,2) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { df(x,3,2,0,log=TRUE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pf(x,4,5) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { pf(x,4,5,0,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qf(x,2,3) }, list(0.25), FALSE)
+  myExpect(function(x=scalaType("D1")) { qf(x,2,3,0,lower.tail=FALSE) }, list(0.25), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rf(n,3,5)) }, list(n), FALSE, tolerance=nStdDev*sqrt((100/9)/n))
+  
+})
+
+test_that("geometric distribution",{
+
+  myExpect(function(x=scalaType("D1")) { dgeom(x,0.73) }, list(3.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { dgeom(x,0.73,log=TRUE) }, list(3.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { pgeom(x,0.32) }, list(5.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { pgeom(x,0.32,lower.tail=FALSE) }, list(5.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { qgeom(x,0.40) }, list(0.59), FALSE)
+  myExpect(function(x=scalaType("D1")) { qgeom(x,0.40,lower.tail=FALSE) }, list(0.59), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rgeom(n,0.17)) }, list(n), FALSE, tolerance=nStdDev*sqrt(((1-0.17)/0.17)/n))
+  
+})
+
+test_that("binomial distribution",{
+
+  myExpect(function(x=scalaType("D1")) { dbinom(x,10,0.73) }, list(13.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { dbinom(x,10,0.73,log=TRUE) }, list(13.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { pbinom(x,6,0.32) }, list(5.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { pbinom(x,6,0.32,lower.tail=FALSE) }, list(5.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { qbinom(x,8,0.40) }, list(0.59), FALSE)
+  myExpect(function(x=scalaType("D1")) { qbinom(x,8,0.40,lower.tail=FALSE) }, list(0.59), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rbinom(n,34,0.17)) }, list(n), FALSE, tolerance=nStdDev*sqrt(34*0.17*(1-0.17)/n))
+  
+})
+
+test_that("negative binomial distribution",{
+
+  myExpect(function(x=scalaType("D1")) { dnbinom(x,10,0.73) }, list(13.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { dnbinom(x,10,0.73,log=TRUE) }, list(13.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { pnbinom(x,6,0.32) }, list(5.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { pnbinom(x,6,0.32,lower.tail=FALSE) }, list(5.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { qnbinom(x,8,0.40) }, list(0.59), FALSE)
+  myExpect(function(x=scalaType("D1")) { qnbinom(x,8,0.40,lower.tail=FALSE) }, list(0.59), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rnbinom(n,34,0.17)) }, list(n), FALSE, tolerance=nStdDev*sqrt(34*(1-0.17)/0.17^2/n))
+  
+})
+
+test_that("poisson distribution",{
+
+  myExpect(function(x=scalaType("D1")) { dpois(x,7.73) }, list(13.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { dpois(x,7.73,log=TRUE) }, list(13.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { ppois(x,2.32) }, list(9.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { ppois(x,2.32,lower.tail=FALSE) }, list(9.0), FALSE)
+  myExpect(function(x=scalaType("D1")) { qpois(x,1.40) }, list(0.59), FALSE)
+  myExpect(function(x=scalaType("D1")) { qpois(x,1.40,lower.tail=FALSE) }, list(0.59), FALSE)
+  myExpect(function(n=scalaType("D0")) { mean(rpois(n,3.5)) }, list(n), FALSE, tolerance=nStdDev*sqrt(3.5/n))
   
 })
