@@ -12,7 +12,31 @@ myExpect <- function(f,args=list(),identical=TRUE, tolerance=sqrt(.Machine$doubl
   else expect_equal(trans, native, tolerance=tolerance)
 }
 
-# "sample"
+myExpectLength <- function(f,args=list()) {
+  g <- s^f
+  h <- attr(g,"rscalaReferenceEnvironment")[["original"]]
+  if ( ! identical(f,h) ) stop("Not identical.")
+  trans <-  do.call(g,args)
+  native <- do.call(f,args) 
+  expect_identical(length(trans), length(native))
+}
+  
+test_that("sample function",{
+  
+  myExpectLength(function() sample(c(3,2,1)))
+  myExpectLength(function() sample(c(3,2,1),2))
+  myExpectLength(function() sample(c(3,2,1),4,replace=TRUE))
+  myExpectLength(function() sample(10))
+  myExpectLength(function() sample(10,3))
+  myExpectLength(function() sample(10,replace=TRUE))
+  myExpectLength(function() sample(10,3,replace=TRUE))
+  myExpectLength(function() sample(10,3,replace=TRUE,prob=as.numeric(1:10)))
+  myExpectLength(function() sample(10,3,prob=as.numeric(1:10)))
+  myExpectLength(function() sample(10,prob=as.numeric(1:10)))
+  myExpectLength(function() sample(c(2,3,4,5,6),2,replace=TRUE,prob=as.numeric(1:5)))
+  myExpectLength(function() sample(c(2,3,4,5,6),5,prob=as.numeric(1:5)))
+  
+})
 
 test_that("special functions",{
 
