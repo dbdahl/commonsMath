@@ -1,3 +1,3 @@
 cat("Starting instance. ********************************\n")
 library(rscala)
-scala("commonsMath")
+s <- scala("commonsMath")
