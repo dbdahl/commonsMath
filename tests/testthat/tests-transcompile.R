@@ -94,7 +94,7 @@ test_that("uniform distribution",{
   myExpect(function(x=scalaType("D1")) { punif(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=scalaType("D1")) { qunif(x,0.3,3) }, list(0.25), FALSE)
   myExpect(function(x=scalaType("D1")) { qunif(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=scalaType("D0")) { mean(runif(n,1.0,2.0)) }, list(n+0.7), FALSE, tolerance=nStdDev*(1/12)/sqrt(n))
+  myExpect(function(n=scalaType("D0")) { mean(runif(n,1.0,2.0)) }, list(n+0.7), FALSE, tolerance=nStdDev*sqrt(1/12)/sqrt(n))
   
 })
 
