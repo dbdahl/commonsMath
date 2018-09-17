@@ -1,0 +1,10 @@
+Package: packageUsingRJavaAndCommonsMath
+Type: Package
+Title: Demonstrate an R Package Depending on rJava and commonsMath
+Version: 1.0
+Date: 2017-05-18
+Author: David B. Dahl <dahl@stat.byu.edu>
+Maintainer: David B. Dahl <dahl@stat.byu.edu>
+Description: This package demonstrates how to utilizing the JAR files from the commonsMath package in a package based on rJava.  Whereas R packages wrapping JAR files typically depend explicitly on rJava, commonsMath only suggests rJava making it also useful for packages based on rscala instead of rJava.  Yet, the way a package based on rJava uses commonsMath is unaffected.  Other developers of R packages wrapping JAR files can follow the lead of commonsMath by slightly modifying their .onLoad function.
+Imports: rJava, commonsMath
+License: GPL-3

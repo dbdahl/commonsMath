@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# This script sets up pushing to both the official, internal repository and the public github
+# mirror.  Presummably the repository has already been check out using:
+#
+#   git clone git@github.com:dbdahl/commonsMath.git
+#   cd commonsMath
+
+cd $(dirname $(readlink -f "$0"))/..
+
+if [[ $(git remote -v | wc -l) -gt 2 ]]
+then
+  2>&1 echo "Note: it seems that the remotes are already set up."
+  exit 0
+fi
+
+git remote -v | grep -q github.com
+if [[ $? -ne 0 ]]
+then
+  2>&1 echo "Error: remote not found git@github.com:dbdahl/commonsMath.git."
+  exit 1
+fi
+
+git remote set-url --add --push origin git@github.com:dbdahl/commonsMath.git
+git remote set-url --add --push origin git@dahl-git.byu.edu:dahl/commonsMath.git
+
+git remote -v
+

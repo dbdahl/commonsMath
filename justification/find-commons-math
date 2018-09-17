@@ -1,0 +1,17 @@
+save.dir = "pkg"
+       
+# Create a directory to store package .tar.gz
+dir.create(save.dir)
+
+# Obtain a list of packages
+pkgs = available.packages()[,'Package']
+
+pkgs <- scan(what=character(),sep=",")
+AntAngioCOOL,arulesNBMiner,bartMachine,bartMachineJARs,CollapsABEL,collUtils,corehunter,Crossover,edeR,ENMeval,extraTrees,gemtc.jar,glmulti,gMCP,GreedyExperimentalDesign,helloJavaWorld,InSilicoVA,iplots,JGR,mallet,MSIseq,mwa,ramidst,rCBA,rcdklibs,rChoiceDialogs,rDNA,Rdrools,Rdroolsjars,REPPlab,rGroovy,RH2,RImpala,RJDBC,rJPSGCS,RJSDMX,rJython,rkafka,rkafkajars,rmcfs,RMOA,RMongo,RNCBIEUtilsLibs,RNetLogo,rrepast,rsubgroup,SBRect,scagnostics,sjdbc,spcosa,streamMOA,venneuler,x.ent,xlsx,xlsxjars,asymmetry,autothresholdr,AWR,AWR.Kinesis,AWR.KMS,awsjavasdk,BACA,BEACH,blkbox,boilerpipeR,CADStat,ChoR,coreNLP,DecorateR,Deducer,DeducerExtras,expands,G2Sd,hive,joinXL,KoNLP,llama,mailR,matchingMarkets,mutossGUI,Myrrix,Myrrixjars,NoiseFiltersR,openNLP,openNLPdata,OpenStreetMap,PortfolioEffectEstim,PortfolioEffectHFT,prcbench,rcdk,ReporteRs,ReporteRsjars,RFreak,RKEA,RKEAjars,RKEEL,RMOAjars,RWeka,RWekajars,RxnSim,SqlRender,subspace,subspaceMOA,textmining,TSsdmx,wordnet,XLConnect,XLConnectJars,cleanNLP,CommonJavaJars,condformat,dismo,ecospat,JavaGD,partykit,polmineR,rCMA,SDMPlay,stream,svMisc,utiml,zooimage
+
+# Download those packages
+download.packages(pkgs = pkgs, destdir = save.dir)
+
+# Now look for commons math.
+system("find pkg -name '*.tar.gz' | xargs -n 1 tar tvf  | grep 'commons.*math.*jar'")
+
