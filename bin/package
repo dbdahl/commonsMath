@@ -95,7 +95,8 @@ then
   sbt +publishLocal
 fi
 
-# Set version number and data
+# Set version number and date
+
 function setversion {
   OLDWD="$PWD"
   sed -i $SEDOPT 's/\(\s*Version\s*:\s*\)\(.*\)/\1'"$1"'/g' R/$PKG_NAME/DESCRIPTION
@@ -119,7 +120,6 @@ then
   TGZ_NAME=${PKG_NAME}_${PKG_VERSION}.tar.gz
   R CMD INSTALL $TGZ_NAME
   cd ..
-  setversion "0.0.0" "1970-01-01"
   mkdir -p deliveries
   mv R/$TGZ_NAME deliveries
 fi
