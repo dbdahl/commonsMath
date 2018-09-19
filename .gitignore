@@ -1,6 +1,6 @@
 # General
-/.Rhistory
-/.Rproj.user
+.Rhistory
+.Rproj.user
 /deliveries
 .*.swp
 /commonsMath.Rcheck
