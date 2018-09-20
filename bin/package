@@ -76,23 +76,7 @@ PKG_VERSION=$(cat build.sbt | grep "^version := " | cut -d '"' -f 2)
 
 if [[ -n "$TASK_SCALA" ]]
 then
-  sbt +package
-  JARDEST=$PWD/R/$PKG_NAME/inst/java
-  for v in 2.11 2.12
-  do
-    JARDESTSPECIFIC=$JARDEST/scala-${v}
-    rm -rf "$JARDESTSPECIFIC"
-    mkdir -p "$JARDESTSPECIFIC"
-    cp target/scala-$v/${PKG_NAME_LOWER}_${v}-${PKG_VERSION}.jar "$JARDESTSPECIFIC/${PKG_NAME_LOWER}.jar"
-    if [[ $v == 2.12 ]]
-    then
-      sbt packageSrc
-      SRCJARDEST=$PWD/R/$PKG_NAME/java
-      mkdir -p $SRCJARDEST
-      cp target/scala-$v/${PKG_NAME_LOWER}_${v}-${PKG_VERSION}-sources.jar "$SRCJARDEST/${PKG_NAME_LOWER}-sources.jar"
-    fi
-  done
-  sbt +publishLocal
+  R --slave -e "rscala::scalaSBT()"
 fi
 
 # Set version number and date

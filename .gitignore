@@ -4,8 +4,8 @@
 /deliveries
 .*.swp
 /commonsMath.Rcheck
-/R/commonsMath/java/commonsmath-sources.jar
-/R/commonsMath/inst/java/scala-*/commonsmath.jar
+/R/commonsMath/java/commonsmath_*-sources.jar
+/R/commonsMath/inst/java/scala-*/commonsmath_*.jar
 
 #SBT
 target

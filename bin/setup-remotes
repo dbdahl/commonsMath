@@ -10,14 +10,14 @@ cd $(dirname $(readlink -f "$0"))/..
 
 if [[ $(git remote -v | wc -l) -gt 2 ]]
 then
-  2>&1 echo "Note: it seems that the remotes are already set up."
+  2>&1 echo "Note: It seems that the remotes are already set up."
   exit 0
 fi
 
 git remote -v | grep -q github.com
 if [[ $? -ne 0 ]]
 then
-  2>&1 echo "Error: remote not found git@github.com:dbdahl/commonsMath.git."
+  2>&1 echo "Error: Remote not found git@github.com:dbdahl/commonsMath.git."
   exit 1
 fi
 
