@@ -76,6 +76,7 @@ PKG_VERSION=$(cat build.sbt | grep "^version := " | cut -d '"' -f 2)
 
 if [[ -n "$TASK_SCALA" ]]
 then
+  rm -r ~/.ivy2/local/org.ddahl/commonsmath_*
   R --slave -e "rscala::scalaSBT()"
 fi
 

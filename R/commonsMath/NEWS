@@ -1,3 +1,7 @@
+1.2 (2018-10-26)
+  * Added package vignette.
+  * Added many functions to support transcompilation in rscala.
+
 1.1 (2017-10-24)
   * Added a few implicit conversions for Scala when doing linear algebra.
 

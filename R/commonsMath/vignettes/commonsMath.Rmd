@@ -1,0 +1,100 @@
+---
+title: "How to Use the commonsMath Package"
+author: "David B. Dahl"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{How to Use the commonsMath Package}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+The commonsMath package provides access to the [Apache Commons Mathematics Library](http://commons.apache.org/proper/commons-math/).  It can
+can accessed via the:
+
++ [rscala](https://cran.r-project.org/package=rscala) package, or
++ [rJava](https://cran.r-project.org/package=rJava) package.
+
+We demonstrate below how to use it in:
+
++ R scripts, or
++ R packages
+
+## Usage in R Scripts
+
+#### Access via rscala
+```{r}
+library("rscala")
+s <- scala("commonsMath")
+rng1 <- s$.new_org.apache.commons.math3.random.RandomDataGenerator()
+rng1$reSeed(7342L)
+rng1$nextGaussian(0,1)
+```
+
+#### Access via rJava
+
+```{r}
+library("rJava")
+.jinit(Sys.glob(file.path(system.file(package="commonsMath"), "java", "*.jar")))
+rng2 <- .jnew("org.apache.commons.math3.random.RandomDataGenerator")
+rng2$reSeed(.jlong(7342L))
+rng2$nextGaussian(0,1)
+```
+
+## Usage in R Packages
+
+#### Access via rscala
+
+The `DESCRIPTION` should have `Imports: rscala, commonsMath`.
+
+The `NAMESPACE` should have `import(rscala)`.
+
+Define an `.onLoad` function like the following:
+
+```{r}
+.onLoad <- function(libname, pkgname) {
+  s <- scala("commonsMath")
+  assign("s", s, envir = parent.env(environment()))
+}
+```
+
+Package functions can then assess classes and methods from the commonsMath package, e.g.:
+
+```{r}
+rstdnorm <- function() {
+  rng1 <- s$.new_org.apache.commons.math3.random.RandomDataGenerator()
+  rng1$nextGaussian(0.0,1.0)
+}
+```
+
+#### Access via rJava
+
+The `DESCRIPTION` should have `Imports: rJava, commonsMath`.
+
+The `NAMESPACE` should first have `import(rscala)` and then have `import(commonsMath)`.
+
+Define an `.onLoad` function like the following:
+
+```{r}
+.onLoad <- function(libname, pkgname) {
+  .jpackage(pkgname, lib.loc=libname)
+}
+```
+
+Package functions can then assess classes and methods from the commonsMath package, e.g.:
+
+```{r}
+rstdnorm <- function() {
+  rng2 <- .jnew("org.apache.commons.math3.random.RandomDataGenerator")
+  rng2$nextGaussian(0,1)
+}
+```
+
+
+
+

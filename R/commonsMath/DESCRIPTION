@@ -1,12 +1,13 @@
 Package: commonsMath
 Type: Package
 Title: JAR Files of the Apache Commons Mathematics Library
-Version: 1.2-20181004-0034
-Date: 2018-10-04
+Version: 1.2
+Date: 2018-10-26
 Description: Java JAR files for the Apache Commons Mathematics Library for use by users and other packages.
 Authors@R: c(person(given="David B.",family="Dahl",role=c("cre"),email="dahl@stat.byu.edu"), person(given="The Apache Software Foundation",role=c("aut","cph")))
 URL: https://github.com/dbdahl/commonsMath
 BugReports: https://github.com/dbdahl/commonsMath/issues
-Suggests: rscala (>= 3.2.0), rJava (>= 0.9-10), testthat
+Suggests: rscala (>= 3.2.3), rJava (>= 0.9-10), testthat, knitr
 License: Apache License 2.0 | file LICENSE
+VignetteBuilder: knitr
 Encoding: UTF-8
