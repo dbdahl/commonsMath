@@ -1,10 +1,12 @@
 #!/bin/bash
 
-# This script sets up pushing to both the official, internal repository and the public github
-# mirror.  Presummably the repository has already been check out using:
+# This script sets up pushing to both the official/internal repository and the
+# public github mirror.  Presummably the repository has already been check out
+# using:
 #
 #   git clone git@github.com:dbdahl/commonsMath.git
-#   cd commonsMath
+#     OR
+#   git clone git@dahl-git.byu.edu:dahl/commonsMath.git
 
 cd $(dirname $(readlink -f "$0"))/..
 
@@ -14,10 +16,10 @@ then
   exit 0
 fi
 
-git remote -v | grep -q github.com
+git remote -v | grep "\\(dahl-git.byu.edu\\|github.com\\)"
 if [[ $? -ne 0 ]]
 then
-  2>&1 echo "Error: Remote not found git@github.com:dbdahl/commonsMath.git."
+  2>&1 echo "Error: Remotes not found."
   exit 1
 fi
 
