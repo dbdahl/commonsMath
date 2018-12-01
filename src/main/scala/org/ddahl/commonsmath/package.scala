@@ -2,6 +2,7 @@ package org.ddahl
 
 import org.apache.commons.math3.random.RandomDataGenerator
 import org.apache.commons.math3.linear.{Array2DRowRealMatrix, LUDecomposition, RealMatrix, RealMatrixFormat}
+import org.apache.commons.math3.util.FastMath.exp
 import scala.collection.parallel.ParSeq
 import java.text.DecimalFormat
 
@@ -38,6 +39,32 @@ package object commonsmath {
         r.reSeed(rdg.nextLong(Long.MinValue, Long.MaxValue))
         r
       }).par
+    }
+
+    def nextInt(weights: Array[Double], onLogScale: Boolean = false): Int = {
+      if ( weights.length == 0 ) throw new IllegalArgumentException("Weights must not be length-zero.")
+      val w = if ( onLogScale ) weights.map(exp) else weights
+      val target = w.sum * rdg.nextUniform(0,1)
+      var i = 0
+      var cumsum = w(i)
+      while ( cumsum < target ) {
+        i += 1
+        cumsum += w(i)
+      }
+      i
+    }
+
+    def nextItem[A](x: IndexedSeq[(A,Double)], onLogScale: Boolean = false): A = {
+      if ( x.length == 0 ) throw new IllegalArgumentException("Weights must not be length-zero.")
+      val w = if ( onLogScale ) x.map(y => exp(y._2)) else x.map(_._2)
+      val target = w.sum * rdg.nextUniform(0,1)
+      var i = 0
+      var cumsum = w(i)
+      while ( cumsum < target ) {
+        i += 1
+        cumsum += w(i)
+      }
+      x(i)._1
     }
 
   }
