@@ -1,0 +1,14 @@
+Run 'install-R --devel'
+Bump version number in build.sbt
+Update R/*/NEWS detailing changes (including the date)
+Try to bump to latest versions in project/build.properties, project/plugins.sbt
+Run './bin/package -s -f'
+Run './bin/package -p'
+Test on Linux, Mac OS, and Windows (use https://win-builder.r-project.org/)
+Test depending packages: cd reverse-dependencies; ./check
+Commit everything to Git, including the package in the deliveries directory.
+Tag in Git the version using "bin/tag" script.
+sbt +publishSigned
+sbt +sonatypeRelease   # Don't worry about the error 'Received 500 error'
+Submit to CRAN
+Bump (development) version number in build.sbt
