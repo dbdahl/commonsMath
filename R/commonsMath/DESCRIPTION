@@ -1,8 +1,8 @@
 Package: commonsMath
 Type: Package
 Title: JAR Files of the Apache Commons Mathematics Library
-Version: 1.2.2-20181210-1713
-Date: 2018-12-10
+Version: 1.2.2-20181218-1354
+Date: 2018-12-18
 Description: Java JAR files for the Apache Commons Mathematics Library for use by users and other packages.
 Authors@R: c(person(given="David B.",family="Dahl",role=c("cre"),email="dahl@stat.byu.edu"), person(given="The Apache Software Foundation",role=c("aut","cph")))
 URL: https://github.com/dbdahl/commonsMath

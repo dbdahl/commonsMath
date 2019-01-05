@@ -94,7 +94,7 @@ test_that("uniform distribution",{
   myExpect(function(x=stD1) { punif(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qunif(x,0.3,3) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qunif(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(runif(n,1.0,2.0)) }, list(n+0.7), FALSE, tolerance=nStdDev*sqrt(1/12)/sqrt(n))
+  myExpect(function(n=stD0) { mean(runif(n,1.0,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt(1/12)/sqrt(n))
   
 })
 
@@ -106,7 +106,7 @@ test_that("normal distribution",{
   myExpect(function(x=stD1) { pnorm(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qnorm(x,0.3,3) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qnorm(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(rnorm(n,1.0,2.0)) }, list(n+0.7), FALSE, tolerance=nStdDev*2/sqrt(n))
+  myExpect(function(n=stD0) { mean(rnorm(n,1.0,2.0)) }, list(n), FALSE, tolerance=nStdDev*2/sqrt(n))
   
 })
 
@@ -118,7 +118,7 @@ test_that("gamma distribution",{
   myExpect(function(x=stD1) { pgamma(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qgamma(x,0.3,3) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qgamma(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(rgamma(n,1.0,2.0)) }, list(n+0.2), FALSE, tolerance=nStdDev*sqrt((1/4)/n))
+  myExpect(function(n=stD0) { mean(rgamma(n,1.0,2.0)) }, list(n/2), FALSE, tolerance=nStdDev*sqrt((1/4)/n))
   
 })
 
