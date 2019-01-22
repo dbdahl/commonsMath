@@ -54,17 +54,18 @@ package object commonsmath {
       i
     }
 
-    def nextItem[A](x: IndexedSeq[(A,Double)], onLogScale: Boolean = false): A = {
+    def nextItem[A](x: IndexedSeq[(A,Double)], onLogScale: Boolean = false): (A,Double) = {
       if ( x.length == 0 ) throw new IllegalArgumentException("Weights must not be length-zero.")
       val w = if ( onLogScale ) x.map(y => exp(y._2)) else x.map(_._2)
-      val target = w.sum * rdg.nextUniform(0,1)
+      val wsum = w.sum
+      val target = wsum * rdg.nextUniform(0,1)
       var i = 0
       var cumsum = w(i)
       while ( cumsum < target ) {
         i += 1
         cumsum += w(i)
       }
-      x(i)._1
+      (x(i)._1, w(i)/wsum)
     }
 
   }
