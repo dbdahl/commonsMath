@@ -112,6 +112,7 @@ fi
 # Check R package
 if [[ -n "$TASK_RCHECK" ]]
 then
+  R --slave -e 'rscala::scalaSBT("+publish")'
   cd deliveries
   R CMD check $FLAG_CHECK_CRAN $TGZ_NAME
   if [[ -n "$FLAG_POST" ]]
