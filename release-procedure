@@ -14,7 +14,8 @@ Publish using either:
     * sbt +publishSigned
     * sbt +sonatypeRelease   # Don't worry about the error 'Received 500 error'
   OR
-  2. Private release (bintray):
+  2. Private release (bintray):  # https://ivanyu.me/blog/2017/08/11/publishing-jars-to-bintray-with-maven-and-sbt/
+                                 # https://github.com/sbt/sbt-bintray/
     * sbt +publish
 Submit to CRAN
 Bump (development) version number in build.sbt
