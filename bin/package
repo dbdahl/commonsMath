@@ -40,18 +40,19 @@ do
     c)
       TASK_R=yes
       TASK_RCHECK=yes
-      FLAG_CHECK_CRAN=""
+      FLAG_CHECK_CRAN="--run-donttest --run-dontrun"
       ;;
     f)
+      TASK_SCALA=yes
       TASK_R=yes
       TASK_RCHECK=yes
-      FLAG_CHECK_CRAN="--as-cran"
+      FLAG_CHECK_CRAN="--as-cran --run-donttest --run-dontrun"
       ;;
     p)
       TASK_SCALA=yes
       TASK_R=yes
       TASK_RCHECK=yes
-      FLAG_CHECK_CRAN="--as-cran"
+      FLAG_CHECK_CRAN="--as-cran --run-donttest --run-dontrun"
       FLAG_POST=yes
       ;;
     *)
@@ -76,12 +77,10 @@ PKG_VERSION=$(cat build.sbt | grep "^version := " | cut -d '"' -f 2)
 
 if [[ -n "$TASK_SCALA" ]]
 then
-  rm -rf ~/.ivy2/local/org.ddahl/commonsmath_*
-  R --slave -e "rscala::scalaSBT()"
+  R --slave -e 'rscala::scalaSBT()'
 fi
 
 # Set version number and date
-
 function setversion {
   OLDWD="$PWD"
   sed -i $SEDOPT 's/\(\s*Version\s*:\s*\)\(.*\)/\1'"$1"'/g' R/$PKG_NAME/DESCRIPTION
@@ -100,11 +99,12 @@ then
   set -e
   setversion $PKG_VERSION $(date +'%Y-%m-%d')
   cd R
-  # R -e "roxygen2::roxygenise('$PKG_NAME')"
+  R -e "devtools::document('$PKG_NAME')"
   R CMD build $PKG_NAME
   TGZ_NAME=${PKG_NAME}_${PKG_VERSION}.tar.gz
   R CMD INSTALL $TGZ_NAME
   cd ..
+  setversion "0.0.0" "1970-01-01"
   mkdir -p deliveries
   mv R/$TGZ_NAME deliveries
 fi
@@ -112,15 +112,17 @@ fi
 # Check R package
 if [[ -n "$TASK_RCHECK" ]]
 then
-  R --slave -e 'rscala::scalaSBT("+publish")'
   cd deliveries
   R CMD check $FLAG_CHECK_CRAN $TGZ_NAME
-  if [[ -n "$FLAG_POST" ]]
-  then
-    rsync --chmod=644 "$TGZ_NAME" dahl.byu.edu:public
-    ssh dahl.byu.edu "cd public && ln -f -s $TGZ_NAME ${PKG_NAME}_LATEST.tar.gz"
-    echo -e "####\nPosted to\n  https://dahl.byu.edu/public/$TGZ_NAME\n####"
-  fi
-  echo deliveries/$TGZ_NAME
+  cd ..
 fi
+
+if [[ -n "$FLAG_POST" ]]
+then
+  R --slave -e 'rscala::scalaSBT("+publish")'
+  rsync --chmod=644 "deliveries/$TGZ_NAME" dahl.byu.edu:public
+  ssh dahl.byu.edu "cd public && ln -f -s $TGZ_NAME ${PKG_NAME}_LATEST.tar.gz"
+  echo -e "####\nPosted to\n  https://dahl.byu.edu/public/$TGZ_NAME\n####"
+fi
+echo deliveries/$TGZ_NAME
 
