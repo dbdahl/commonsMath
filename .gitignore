@@ -6,6 +6,8 @@
 /commonsMath.Rcheck
 /R/commonsMath/java/commonsmath_*-sources.jar
 /R/commonsMath/inst/java/scala-*/commonsmath_*.jar
+/example/R/packageUsingRJavaAndCommonsMath/java
+/example/R/packageUsingRJavaAndCommonsMath/inst/java
 
 #SBT
 target
