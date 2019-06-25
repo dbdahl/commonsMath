@@ -14,10 +14,14 @@ package object commonsmath {
       if (a.size < b.size) -1
       else if (a.size > b.size) 1
       else {
-        a.zip(b).foreach(x => {
+        val ab = a.zip(b)
+        var i = 0
+        while ( i < ab.size ) {
+          val x = ab(i)
           if (x._1 < x._2) return -1
           if (x._1 > x._2) return 1
-        })
+          i += 1
+        }
         0
       }
     }
@@ -34,17 +38,21 @@ package object commonsmath {
 
     def nextRandomDataGenerators(nCores: Int = 0): ParSeq[RandomDataGenerator] = {
       val n = if (nCores == 0) Runtime.getRuntime.availableProcessors else nCores
-      Range(0, n).map(i => {
+      collection.parallel.immutable.ParSeq.fill(n) {
         val r = new RandomDataGenerator()
         r.reSeed(rdg.nextLong(Long.MinValue, Long.MaxValue))
         r
-      }).par
+      }
     }
 
     def nextInt(weights: Array[Double], onLogScale: Boolean = false): Int = {
       if ( weights.length == 0 ) throw new IllegalArgumentException("Weights must not be length-zero.")
       val w = if ( onLogScale ) {
-        val max = weights.max
+        var maxIndex = 0
+        for ( i <- weights.indices ) {
+          if ( weights(i) > weights(maxIndex) ) maxIndex = i
+        }
+        val max = weights(maxIndex)
         weights.map(y => exp(y-max))
       } else weights
       val target = w.sum * rdg.nextUniform(0,1)
@@ -61,7 +69,11 @@ package object commonsmath {
       if ( x.length == 0 ) throw new IllegalArgumentException("Weights must not be length-zero.")
       val w = if ( onLogScale ) {
         val xx = x.map(_._2)
-        val max = xx.max
+        var maxIndex = 0
+        for ( i <- xx.indices ) {
+          if ( xx(i) > xx(maxIndex) ) maxIndex = i
+        }
+        val max = xx(maxIndex)
         xx.map(y => exp(y-max))
       } else x.map(_._2)
       val wsum = w.sum

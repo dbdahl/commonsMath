@@ -4,8 +4,8 @@
 /deliveries
 .*.swp
 /commonsMath.Rcheck
-/R/commonsMath/java/commonsmath_*-sources.jar
-/R/commonsMath/inst/java/scala-*/commonsmath_*.jar
+/R/commonsMath/java/commonsMath-source.jar
+/R/commonsMath/inst/java/scala-*/commonsMath.jar
 /example/R/packageUsingRJavaAndCommonsMath/java
 /example/R/packageUsingRJavaAndCommonsMath/inst/java
 

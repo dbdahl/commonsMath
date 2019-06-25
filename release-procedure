@@ -2,8 +2,8 @@ Run 'install-R --devel'
 Bump version number in build.sbt
 Update R/*/NEWS detailing changes (including the date)
 Try to bump to latest versions in project/build.properties, project/plugins.sbt
-Run './bin/package -s -f'
-Run './bin/package -p'
+Run 'package -s -f'
+Run 'package -p'
 Test on Linux, Mac OS, and Windows (use https://win-builder.r-project.org/)
 Test depending packages: cd reverse-dependencies; ./check
 Commit everything to Git, including the package in the deliveries directory.
@@ -12,7 +12,13 @@ Modify the build.bst for either a sonatype or bintray release.
 Publish using either:
   1. Public releases (sonatype):
     * sbt +publishSigned
-    * sbt +sonatypeRelease   # Don't worry about the error 'Received 500 error'
+    * https://oss.sonatype.org/
+          -> Log in
+          -> Staging Repositories
+          -> orgddahl-????
+          -> "Close" repository
+          -> "Release" repository
+    #* sbt +sonatypeRelease   # Don't worry about the error 'Received 500 error'
   OR
   2. Private release (bintray):  # https://ivanyu.me/blog/2017/08/11/publishing-jars-to-bintray-with-maven-and-sbt/
                                  # https://github.com/sbt/sbt-bintray/
