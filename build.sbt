@@ -1,8 +1,8 @@
 organization := "org.ddahl"
 name := "commonsMath"
 
-version := "1.2.1"
-//version := "1.2.1-SNAPSHOT"
+//version := "1.2.1"
+version := "1.2.1-SNAPSHOT"
 
 scalaVersion := "2.12.8"
 crossScalaVersions := Seq("2.11.12", "2.12.8", "2.13.0")
@@ -24,9 +24,8 @@ libraryDependencies ++= {
   }
 }
 
-//publishTo := sonatypePublishTo.value
-
-licenses := List(("Apache-2.0",url("https://www.apache.org/licenses/LICENSE-2.0")))
+publishTo := sonatypePublishTo.value
+//licenses := List(("Apache-2.0",url("https://www.apache.org/licenses/LICENSE-2.0")))
 
 publishMavenStyle := true
 
