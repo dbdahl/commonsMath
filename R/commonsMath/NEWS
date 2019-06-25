@@ -1,6 +1,9 @@
-1.2.1 (2019-06-24)
+1.2.2 (2019-06-24)
   * Support for Scala 2.13.
   * Updated to rscala 3.2.13.
+
+1.2.1 (2019-06-24)
+  * Never released.
 
 1.2 (2018-10-26)
   * Added package vignette.

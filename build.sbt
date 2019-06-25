@@ -1,8 +1,8 @@
 organization := "org.ddahl"
 name := "commonsMath"
 
-//version := "1.2.1"
-version := "1.2.1-SNAPSHOT"
+version := "1.2.2"
+//version := "1.2.2-SNAPSHOT"
 
 scalaVersion := "2.12.8"
 crossScalaVersions := Seq("2.11.12", "2.12.8", "2.13.0")
@@ -25,19 +25,13 @@ libraryDependencies ++= {
 }
 
 publishTo := sonatypePublishTo.value
-//licenses := List(("Apache-2.0",url("https://www.apache.org/licenses/LICENSE-2.0")))
+
+licenses := List(("Apache-2.0",url("https://www.apache.org/licenses/LICENSE-2.0")))
 
 publishMavenStyle := true
 
 pomExtra := (
   <url>https://github.com/dbdahl/commonsMath/</url>
-  <licenses>
-    <license>
-      <name>Apache License 2.0</name>
-      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
   <scm>
     <url>https://github.com/dbdahl/commonsMath/</url>
     <connection>scm:git:https://github.com/dbdahl/rscala.git</connection>
