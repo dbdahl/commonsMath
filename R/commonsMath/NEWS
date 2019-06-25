@@ -1,3 +1,6 @@
+1.2.3 (2019-07-01)
+  * Added missing scala-parallel-collections JAR for Scala 2.13.
+
 1.2.2 (2019-06-24)
   * Support for Scala 2.13.
   * Updated to rscala 3.2.13.
