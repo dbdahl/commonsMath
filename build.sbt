@@ -24,24 +24,3 @@ libraryDependencies ++= {
   }
 }
 
-publishTo := sonatypePublishTo.value
-
-licenses := List(("Apache-2.0",url("https://www.apache.org/licenses/LICENSE-2.0")))
-
-publishMavenStyle := true
-
-pomExtra := (
-  <url>https://github.com/dbdahl/commonsMath/</url>
-  <scm>
-    <url>https://github.com/dbdahl/commonsMath/</url>
-    <connection>scm:git:https://github.com/dbdahl/rscala.git</connection>
-  </scm>
-  <developers>
-    <developer>
-      <id>dbdahl</id>
-      <name>David B. Dahl</name>
-      <url>https://dahl.byu.edu</url>
-    </developer>
-  </developers>
-)
-
