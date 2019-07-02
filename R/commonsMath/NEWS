@@ -1,5 +1,8 @@
-1.2.3 (2019-07-01)
+1.2.3 (2019-07-02)
   * Added missing scala-parallel-collections JAR for Scala 2.13.
+  * Made transcompilation tests conditional of rscala being intalled.
+  * Dropped Scala implicits for matrices in Apache Commons Math that are
+    no longer needed.
 
 1.2.2 (2019-06-24)
   * Support for Scala 2.13.

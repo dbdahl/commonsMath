@@ -1,8 +1,8 @@
 organization := "org.ddahl"
 name := "commonsMath"
 
-//version := "1.2.3"
-version := "1.2.2-SNAPSHOT"
+version := "1.2.3"
+//version := "1.2.3-SNAPSHOT"
 
 scalaVersion := "2.12.8"
 crossScalaVersions := Seq("2.11.12", "2.12.8", "2.13.0")

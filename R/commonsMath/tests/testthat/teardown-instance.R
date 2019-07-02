@@ -1,2 +1,4 @@
-close(s)
-cat("Stopping instance. **************************\n")
+if ( ! skipall ) {
+  close(s)
+  cat("Stopping instance. **************************\n")
+}

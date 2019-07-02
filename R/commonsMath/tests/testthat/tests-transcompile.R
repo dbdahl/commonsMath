@@ -1,6 +1,6 @@
 context("transcompile")
 
-# skip("transcompile")
+if ( skipall ) skip("transcompile")
 
 myExpect <- function(f,args=list(),identical=TRUE, tolerance=sqrt(.Machine$double.eps)) {
   g <- s^f
