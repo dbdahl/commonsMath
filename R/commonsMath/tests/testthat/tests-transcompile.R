@@ -83,7 +83,7 @@ test_that("special functions",{
 
 })
 
-n  <- 100
+n  <- 1000
 nStdDev <- 4
 
 test_that("uniform distribution",{
