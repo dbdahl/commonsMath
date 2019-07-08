@@ -84,7 +84,7 @@ test_that("special functions",{
 })
 
 n  <- 1000
-nStdDev <- 4
+nStdDev <- 2
 
 test_that("uniform distribution",{
 
@@ -94,7 +94,7 @@ test_that("uniform distribution",{
   myExpect(function(x=stD1) { punif(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qunif(x,0.3,3) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qunif(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(runif(n,1.0,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt(1/12)/sqrt(n))
+  myExpect(function(n=stD0) { mean(runif(n,1.0,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*1/12/n))
   
 })
 
@@ -106,7 +106,7 @@ test_that("normal distribution",{
   myExpect(function(x=stD1) { pnorm(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qnorm(x,0.3,3) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qnorm(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(rnorm(n,1.0,2.0)) }, list(n), FALSE, tolerance=nStdDev*2/sqrt(n))
+  myExpect(function(n=stD0) { mean(rnorm(n,1.0,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*2^2/n))
   
 })
 
@@ -118,7 +118,7 @@ test_that("gamma distribution",{
   myExpect(function(x=stD1) { pgamma(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qgamma(x,0.3,3) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qgamma(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(rgamma(n,1.0,2.0)) }, list(n/2), FALSE, tolerance=nStdDev*sqrt((1/4)/n))
+  myExpect(function(n=stD0) { mean(rgamma(n,1.0,2.0)) }, list(n/2), FALSE, tolerance=nStdDev*sqrt(2*1/4/n))
   
 })
 
@@ -130,7 +130,7 @@ test_that("exponential distribution",{
   myExpect(function(x=stD1) { pexp(x,0.2,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qexp(x,0.3) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qexp(x,0.3,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(rexp(n,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt((1/4)/n))
+  myExpect(function(n=stD0) { mean(rexp(n,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*1/4/n))
   
 })
 
@@ -142,7 +142,7 @@ test_that("beta distribution",{
   myExpect(function(x=stD1) { pbeta(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qbeta(x,0.3,3) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qbeta(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(rbeta(n,3.0,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt((1/25)/n))
+  myExpect(function(n=stD0) { mean(rbeta(n,3.0,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*1/25/n))
   
 })
 
@@ -154,7 +154,7 @@ test_that("t distribution",{
   myExpect(function(x=stD1) { pt(x,4,0,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qt(x,2) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qt(x,2,0,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(rt(n,3)) }, list(n), FALSE, tolerance=nStdDev*sqrt(3/n))
+  myExpect(function(n=stD0) { mean(rt(n,3)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*3/(3-2)/n))
   
 })
 
@@ -166,7 +166,7 @@ test_that("chi squared distribution",{
   myExpect(function(x=stD1) { pchisq(x,4,0,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qchisq(x,2) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qchisq(x,2,0,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(rchisq(n,3)) }, list(n), FALSE, tolerance=nStdDev*sqrt(6/n))
+  myExpect(function(n=stD0) { mean(rchisq(n,3)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*6/n))
   
 })
 
@@ -178,7 +178,7 @@ test_that("F distribution",{
   myExpect(function(x=stD1) { pf(x,4,5,0,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qf(x,2,3) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qf(x,2,3,0,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(rf(n,3,5)) }, list(n), FALSE, tolerance=nStdDev*sqrt((100/9)/n))
+  myExpect(function(n=stD0) { mean(rf(n,3,5)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*100/9/n))
   
 })
 
@@ -190,7 +190,7 @@ test_that("geometric distribution",{
   myExpect(function(x=stD1) { pgeom(x,0.32,lower.tail=FALSE) }, list(5.0), FALSE)
   myExpect(function(x=stD1) { qgeom(x,0.40) }, list(0.59), FALSE)
   myExpect(function(x=stD1) { qgeom(x,0.40,lower.tail=FALSE) }, list(0.59), FALSE)
-  myExpect(function(n=stD0) { mean(rgeom(n,0.17)) }, list(n), FALSE, tolerance=nStdDev*sqrt(((1-0.17)/0.17)/n))
+  myExpect(function(n=stD0) { mean(rgeom(n,0.17)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*(1-0.17)/0.17^2/n))
   
 })
 
@@ -202,7 +202,7 @@ test_that("binomial distribution",{
   myExpect(function(x=stD1) { pbinom(x,6,0.32,lower.tail=FALSE) }, list(5.0), FALSE)
   myExpect(function(x=stD1) { qbinom(x,8,0.40) }, list(0.59), FALSE)
   myExpect(function(x=stD1) { qbinom(x,8,0.40,lower.tail=FALSE) }, list(0.59), FALSE)
-  myExpect(function(n=stD0) { mean(rbinom(n,34,0.17)) }, list(n), FALSE, tolerance=nStdDev*sqrt(34*0.17*(1-0.17)/n))
+  myExpect(function(n=stD0) { mean(rbinom(n,34,0.17)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*34*0.17*(1-0.17)/n))
   
 })
 
@@ -214,7 +214,7 @@ test_that("negative binomial distribution",{
   myExpect(function(x=stD1) { pnbinom(x,6,0.32,lower.tail=FALSE) }, list(5.0), FALSE)
   myExpect(function(x=stD1) { qnbinom(x,8,0.40) }, list(0.59), FALSE)
   myExpect(function(x=stD1) { qnbinom(x,8,0.40,lower.tail=FALSE) }, list(0.59), FALSE)
-  myExpect(function(n=stD0) { mean(rnbinom(n,34,0.17)) }, list(n), FALSE, tolerance=nStdDev*sqrt(34*(1-0.17)/0.17^2/n))
+  myExpect(function(n=stD0) { mean(rnbinom(n,34,0.17)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*34*(1-0.17)/0.17^2/n))
   
 })
 
@@ -226,6 +226,7 @@ test_that("poisson distribution",{
   myExpect(function(x=stD1) { ppois(x,2.32,lower.tail=FALSE) }, list(9.0), FALSE)
   myExpect(function(x=stD1) { qpois(x,1.40) }, list(0.59), FALSE)
   myExpect(function(x=stD1) { qpois(x,1.40,lower.tail=FALSE) }, list(0.59), FALSE)
-  myExpect(function(n=stD0) { mean(rpois(n,3.5)) }, list(n), FALSE, tolerance=nStdDev*sqrt(3.5/n))
+  myExpect(function(n=stD0) { mean(rpois(n,3.5)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*3.5/n))
   
 })
+
