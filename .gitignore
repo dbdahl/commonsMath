@@ -3,7 +3,8 @@
 .Rproj.user
 /deliveries
 .*.swp
-/commonsMath.Rcheck
+commonsMath.Rcheck
+/R/commonsMath/*.tar.gz
 /R/commonsMath/java/commonsMath-source.jar
 /R/commonsMath/inst/java/scala-*/commonsMath.jar
 /example/R/packageUsingRJavaAndCommonsMath/java

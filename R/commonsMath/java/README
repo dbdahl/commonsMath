@@ -1,13 +1,13 @@
-The source code for "commons-math3-*.jar" can be obtained from the download
-page of "Commons Math: The Apache Commons Mathematics Library":
+Upon installation, this package downloads "Commons Math: The Apache Commons
+Mathematics Library".  The source code can be obtained from its download page:
 
 https://commons.apache.org/proper/commons-math/download_math.cgi
 
-The source code for "scala-parallel-collections_*.jar" can be obtained from the
-releases page of the "scala/scala-parallel-collections" GitHub respository:
+Upon installation, this package downloads the "scala-parallel-collections" JAR
+and the source is available from its GitHub respository:
 
 https://github.com/scala/scala-parallel-collections/releases
 
-The source for add-on convenience functions for Scala is available here in
+The source for add-on functions for Scala is available here in
 commonsMath-source.jar
 
