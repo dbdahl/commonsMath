@@ -1,3 +1,10 @@
+1.2.4 (2019-07-09)
+  * Reduce source package size by removing JARs and utilizing a copy --- to
+    avoid a dependency --- of the rscala::scalaDevelDownloadJARs function.
+  * Added 'rmarkdown' to 'Suggests' to address error found on CRAN.
+  * Corrected mistakes in standard errors in tests that led to false
+    positives on CRAN.
+
 1.2.3 (2019-07-02)
   * Added missing scala-parallel-collections JAR for Scala 2.13.
   * Made transcompilation tests conditional of rscala being intalled.

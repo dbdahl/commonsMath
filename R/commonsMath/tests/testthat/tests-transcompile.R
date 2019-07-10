@@ -84,7 +84,7 @@ test_that("special functions",{
 })
 
 n  <- 1000
-nStdDev <- 2
+nStdDev <- 4
 
 test_that("uniform distribution",{
 
@@ -118,7 +118,7 @@ test_that("gamma distribution",{
   myExpect(function(x=stD1) { pgamma(x,0.2,5,lower.tail=FALSE) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qgamma(x,0.3,3) }, list(0.25), FALSE)
   myExpect(function(x=stD1) { qgamma(x,0.3,3,lower.tail=FALSE) }, list(0.25), FALSE)
-  myExpect(function(n=stD0) { mean(rgamma(n,1.0,2.0)) }, list(n/2), FALSE, tolerance=nStdDev*sqrt(2*1/4/n))
+  myExpect(function(n=stD0) { mean(rgamma(n,1.0,2.0)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*1/4/n))
   
 })
 
@@ -229,4 +229,3 @@ test_that("poisson distribution",{
   myExpect(function(n=stD0) { mean(rpois(n,3.5)) }, list(n), FALSE, tolerance=nStdDev*sqrt(2*3.5/n))
   
 })
-
