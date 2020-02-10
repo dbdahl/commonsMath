@@ -1,3 +1,6 @@
+1.2.5 (2020-02-10)
+  * Address ERRORs caused by failed tests.
+
 1.2.4 (2019-07-09)
   * Reduce source package size by removing JARs and utilizing a copy --- to
     avoid a dependency --- of the rscala::scalaDevelDownloadJARs function.

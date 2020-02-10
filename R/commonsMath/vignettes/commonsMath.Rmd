@@ -9,7 +9,8 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+scalaAvailable <- ! isTRUE(tryCatch({rscala::scalaConfig(reconfig="offline")}, error=function(e) TRUE))
+knitr::opts_chunk$set(echo = TRUE, eval=scalaAvailable)
 ```
 
 ## Overview

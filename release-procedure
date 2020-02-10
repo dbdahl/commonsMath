@@ -1,12 +1,12 @@
 Run 'install-R --devel'
 Bump version number in build.sbt
 Update R/*/NEWS detailing changes (including the date)
-Try to bump to latest versions in project/build.properties, project/plugins.sbt
+Try to bump to latest versions in project/build.properties
 Run 'package -s -f'
-Run 'package -p'
+Commit everything to Git, including the package in the deliveries directory.
+Run 'deploy-R-package'
 Test on Linux, Mac OS, and Windows (use https://win-builder.r-project.org/)
 Test depending packages
-Commit everything to Git, including the package in the deliveries directory.
 Tag in Git the version using "bin/tag" script.
 Submit to CRAN
 Bump (development) version number in build.sbt
