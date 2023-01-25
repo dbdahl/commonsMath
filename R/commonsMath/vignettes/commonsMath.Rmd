@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, eval=scalaAvailable)
 
 ## Overview
 
-The commonsMath package provides access to the [Apache Commons Mathematics Library](http://commons.apache.org/proper/commons-math/).  It can
+The commonsMath package provides access to the [Apache Commons Mathematics Library](https://commons.apache.org/proper/commons-math/).  It can
 can accessed via the:
 
 + [rscala](https://cran.r-project.org/package=rscala) package, or
