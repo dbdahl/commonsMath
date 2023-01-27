@@ -1,0 +1,9 @@
+#!/usr/bin/fish
+
+cd (dirname (status --current-filename))/..
+
+R --slave -e "rscala::scalaSBT()"
+
+tar -f jars.tar.gz -xC R/commonsMath/inst/java
+
+R CMD build R/commonsMath

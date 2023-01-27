@@ -1,4 +1,4 @@
-1.2.6 (2023-01-24)
+1.2.7 (2023-01-27)
   * Address CRAN concern regarding "Packages which use Internet resources
     should fail gracefully with an informative message..."
 

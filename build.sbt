@@ -1,11 +1,13 @@
 organization := "org.ddahl"
 name := "commonsMath"
 
-version := "1.2.5"
-//version := "1.2.5-SNAPSHOT"
+version := "1.2.7"
+//version := "1.2.7-SNAPSHOT"
 
-scalaVersion := "2.13.1"
-crossScalaVersions := Seq("2.11.12", "2.12.10", "2.13.1")
+scalaVersion := "2.13.10"
+
+crossScalaVersions := Seq("2.11.12", "2.12.17", "2.13.10")
+
 scalacOptions ++= List("-feature","-deprecation", "-unchecked", "-Xlint")
 
 libraryDependencies ++= Seq(
