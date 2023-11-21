@@ -1,3 +1,6 @@
+1.2.8 (2023-08-17)
+  * Remove rscala as a suggsted package.
+  
 1.2.7 (2023-01-27)
   * Address CRAN concern regarding "Packages which use Internet resources
     should fail gracefully with an informative message..."

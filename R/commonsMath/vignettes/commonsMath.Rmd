@@ -9,7 +9,7 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-scalaAvailable <- ! isTRUE(tryCatch({rscala::scalaConfig(reconfig="offline")}, error=function(e) TRUE))
+scalaAvailable <- FALSE # ! isTRUE(tryCatch({rscala::scalaConfig(reconfig="offline")}, error=function(e) TRUE))
 knitr::opts_chunk$set(echo = TRUE, eval=scalaAvailable)
 ```
 
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE, eval=scalaAvailable)
 The commonsMath package provides access to the [Apache Commons Mathematics Library](https://commons.apache.org/proper/commons-math/).  It can
 can accessed via the:
 
-+ [rscala](https://cran.r-project.org/package=rscala) package, or
++ [rscala](https://github.com/dbdahl/rscala) package, or
 + [rJava](https://cran.r-project.org/package=rJava) package.
 
 We demonstrate below how to use it in:
